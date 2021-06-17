@@ -1,19 +1,19 @@
 #!/usr/bin/env node
 
-var fs = require("fs");
-var request = require("request");
-var minimatch = require("minimatch");
-var glob = require("glob");
-var uniq = require("array-uniq");
-var chalk = require("chalk");
-var pretty = require("prettysize");
-var md5File = require("md5-file");
+const fs = require("fs");
+const request = require("request");
+const minimatch = require("minimatch");
+const glob = require("glob");
+const uniq = require("array-uniq");
+const chalk = require("chalk");
+const pretty = require("prettysize");
+const md5File = require("md5-file");
 
-var argv = require("minimist")(process.argv.slice(2));
-var home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
-var version = require("./package.json").version;
+const argv = require("minimist")(process.argv.slice(2));
+const home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
+const version = require("./package.json").version;
 
-var openStreams = 0;
+let openStreams = 0;
 
 function pruneCached(images, cacheMap) {
     return images.filter(function(image) {
@@ -53,11 +53,11 @@ if (argv.v || argv.version) {
     console.log(chalk.underline.bold("TinyPNG CLI"));
     console.log("v" + version + "\n");
 
-    var files = argv._.length ? argv._ : ["."];
+    const files = argv._.length ? argv._ : ["."];
 
-    var key = "";
-    var resize = {};
-    var max = argv.m || argv.max ? (argv.m || argv.max) + 0 : -1;
+    let key = "";
+    const resize = {};
+    let max = argv.m || argv.max ? (argv.m || argv.max) + 0 : -1;
 
     if (!argv["dry-run"]) {
         if (argv.k || argv.key) {
@@ -72,8 +72,8 @@ if (argv.v || argv.version) {
         key = "dry-run-key";
     }
 
-    var cacheMap = {};
-    var cacheMapLocation =
+    let cacheMap = {};
+    const cacheMapLocation =
         typeof (argv.c || argv.cache) === "string"
             ? (argv.c || argv.cache).trim()
             : home + "/.tinypng.cache.json";
@@ -118,7 +118,7 @@ if (argv.v || argv.version) {
             )
         );
     } else {
-        var images = [];
+        let images = [];
 
         files.forEach(function(file) {
             if (fs.existsSync(file)) {
@@ -140,7 +140,7 @@ if (argv.v || argv.version) {
             }
         });
 
-        var unique = argv.force
+        const unique = argv.force
             ? uniq(images)
             : pruneCached(uniq(images), cacheMap);
 
@@ -233,7 +233,7 @@ if (argv.v || argv.version) {
                                             )
                                         );
 
-                                        var fileStream = fs.createWriteStream(
+                                        const fileStream = fs.createWriteStream(
                                             file
                                         );
                                         openStreams = openStreams + 1;
@@ -314,7 +314,7 @@ if (argv.v || argv.version) {
 
             // Save the cacheMap on wet runs
             if (!argv["dry-run"]) {
-                function saveCacheMapWhenCompvare() {
+                const saveCacheMapWhenCompvare = function () {
                     if (openStreams > 0) {
                         return setTimeout(saveCacheMapWhenCompvare, 100);
                     }
@@ -322,7 +322,7 @@ if (argv.v || argv.version) {
                         cacheMapLocation,
                         JSON.stringify(cacheMap, null, "\t")
                     );
-                }
+                };
                 setTimeout(saveCacheMapWhenCompvare, 500);
             }
         }
