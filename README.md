@@ -6,6 +6,13 @@
 
 	npm install -g tinypng-cli
 
+### Use this Repository
+
+    git clone git@github.com:CroMarmot/tinypng-cli.git
+    cd tinypng-cli
+    npm i
+    npm link
+
 ## Preamble
 
 To use TinyPNG CLI, you need an API key for TinyPNG. You can get one at [https://tinypng.com/developers](https://tinypng.com/developers).
