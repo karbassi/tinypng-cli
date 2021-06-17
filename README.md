@@ -84,6 +84,10 @@ That's it. Pretty easy, huh?
 
 - Documentation
 - Tests
+- fix `Not a valid JSON response for` and `Connection error`: https://github.com/websperts/tinypng-cli/issues/12 and https://github.com/websperts/tinypng-cli/issues/21, https://github.com/websperts/tinypng-cli/issues/22
+- fix `space in filename` https://github.com/websperts/tinypng-cli/issues/23
+- fix `empty Size`: https://github.com/websperts/tinypng-cli/issues/18
+- Support keep original files https://github.com/websperts/tinypng-cli/issues/30
 
 ## License
 
