@@ -20,6 +20,10 @@ To shrink all PNG images within the current directory.
 
 	tinypng .
 
+Custom Output prefix(default is `tinypng-`, `--prefix=""` for replace)
+
+	tinypng . --prefix="output-"
+
 To shrink all PNG images within the current directory and subdirectoies, use the `-r` flag
 
 	tinypng . -r
@@ -60,6 +64,11 @@ That's it. Pretty easy, huh?
 
 ## Changelog
 
+
+* 0.0.9
+    * Support default `prefix` and custom `prefix`
+    * Refactor code, reduced `if` indentation depth
+    * Display running progress
 * 0.0.8
     * Implement cache map support and support for forcing compression
     * Implement dry-run support
@@ -87,7 +96,6 @@ That's it. Pretty easy, huh?
 - fix `Not a valid JSON response for` and `Connection error`: https://github.com/websperts/tinypng-cli/issues/12 and https://github.com/websperts/tinypng-cli/issues/21, https://github.com/websperts/tinypng-cli/issues/22
 - fix `space in filename` https://github.com/websperts/tinypng-cli/issues/23
 - fix `empty Size`: https://github.com/websperts/tinypng-cli/issues/18
-- Support keep original files https://github.com/websperts/tinypng-cli/issues/30
 
 ## License
 
